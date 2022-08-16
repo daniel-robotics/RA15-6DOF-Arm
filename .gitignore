@@ -1,5 +1,4 @@
 ### USER-SPECIFIED FILES
-Media/
 
 
 ### DOWNLOADED DEPENDENCIES
@@ -73,7 +72,6 @@ Mkfile.old
 dkms.conf
 
 # Exclude media formats
-*.jpg
 *.bmp
 *.raw
 *.avi
@@ -429,3 +427,4 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+*.db
