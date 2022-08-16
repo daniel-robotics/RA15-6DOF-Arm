@@ -1,0 +1,45 @@
+Internal Comm Packet Protocols
+
+Hardware RS485 Buffer: 64 bytes
+
+	
+Packet:	packet_nxt1,	40 Bytes
+	Byte:	0:		0x01		Header
+			1-4:	fix16_t		J1 Angle Target		(16.16 representation) (deg)
+			5-8:	fix16_t		J1 Velocity Target	(16.16 representation) (deg/s)
+			9-12:	fix16_t		J3 Angle Target		(16.16 representation) (deg)
+			13-16:	fix16_t		J3 Velocity Target	(16.16 representation) (deg/s)
+			17-20:	fix16_t		J4 Angle Target		(16.16 representation) (deg)
+			21-24:	fix16_t		J4 Velocity Target	(16.16 representation) (deg/s)
+			25-28:	fix16_t		J5 Angle Target		(16.16 representation) (deg)
+			29-32:	fix16_t		J5 Velocity Target	(16.16 representation) (deg/s)
+			33-36:	fix16_t		J2 Angle			(16.16 representation) (deg)
+			37:		uint8_t		enable_joint_limits	(1 bit for each joint)
+			38:		uint8_t		TMUX				(1 bit for each homing switch attached to PCF8574)
+			39:		uint8_t		RCX State			(command for end-effector actuator)
+
+
+
+Packet: packet_nxt2,	19 Bytes
+	Byte:	0:		0x02		Header
+			1-4:	fix16_t 	J1 Angle			(16.16 representation) (deg)
+			5-8:	fix16_t		J1 Velocity			(16.16 representation) (deg/s)
+			9-12:	fix16_t 	J5 Angle			(16.16 representation) (deg) 
+			13-16:	fix16_t		J5 Velocity			(16.16 representation) (deg/s)
+			17:		sint8_t		J1 Power			(PWM Duty Cycle, 0-100)
+			18:		sint8_t		J5 Power			(PWM Duty Cycle, 0-100)
+
+
+
+Packet: packet_nxt3,	22 Bytes
+	Byte:	0:		0x03		Header
+			1-4:	fix16_t 	J3 Angle			(16.16 representation) (deg)
+			5-8:	fix16_t		J3 Velocity			(16.16 representation) (deg/s)
+			9-12:	fix16_t 	J4 Angle			(16.16 representation) (deg)
+			13-16:	fix16_t		J4 Velocity			(16.16 representation) (deg/s)
+			17:		sint8_t		J3 Power			(PWM Duty Cycle, 0-100)
+			18:		sint8_t		J4 Power			(PWM Duty Cycle, 0-100)
+			19:		uint8_t		EA1
+			20:		uint8_t		EA2
+			21:		uint8_t		EA3
+

@@ -1,0 +1,30 @@
+  RESOURCE Motors
+  {
+  	RESOURCEPROPERTY = STANDARD;
+  };
+
+  TASK MotorRegulatorTask
+  {
+    AUTOSTART = FALSE;
+    PRIORITY = 10; 					/* Smaller value means lower priority */ 
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    RESOURCE = Motors;
+    STACKSIZE = 512; 				/* Stack size */ 
+  };
+
+
+  ALARM MotorRegulatorAlarm
+  {
+    COUNTER = SysTimerCnt;
+    ACTION = ACTIVATETASK
+    {
+        TASK = MotorRegulatorTask;
+    };
+    AUTOSTART = TRUE
+    {
+        ALARMTIME = 1;
+        CYCLETIME = 4; 			/* Task is executed every 4msec */
+        APPMODE = appmode1;
+    };
+  };

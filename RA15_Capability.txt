@@ -1,0 +1,57 @@
+NXT1:
+	MA: J2-A
+	MB: J2-B
+	MC: J4
+	S1: Kill Switch
+	S2: Limit Switch Hub
+	S3: IR-Link to RCX1
+	S4:	RS485 to Port Splitter
+	BT: (Optional) Bluetooth Slave to PC
+	LCD: Display mode, error state
+
+NXT2:
+	MA: J1-A
+	MB: J1-B
+	MC: J5
+	S1: EOPD1
+	S2: EOPD2
+	S3: EOPD3
+	S4:	RS485 to Port Splitter
+	BT: 
+
+NXT3:
+	MA: J3-A
+	MB: J3-B
+	MC: J6
+	S1: EA-Addl-1
+	S2: EA-Addl-2
+	S3: 
+	S4:	RS485 to Port Splitter
+	BT: 
+
+RCX1:
+	MA: J2-Pump
+	MB: EA-Valve
+	MC: EA-Pump
+	S1: J2 Pressure Transducer
+	S2:
+	S3:
+	IR: IR-Link to NXT1
+	LCD: J2 Pressure Transducer
+
+PC:
+	BT: (Optional) Bluetooth Master to NXT1
+	MATLAB: Path planning
+
+
+WIRES	
+EOPD 1	1.25m	x
+EOPD 2	1.25m	x
+EOPD 3	1.25m	x
+J5		1m		x
+J4		1m		x
+J6		1m		x	
+J3-1	0.75m	x
+J3-2	0.75m	x
+SW Hub	0.75m	x
+IRLink	0.75m	x

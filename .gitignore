@@ -1,5 +1,5 @@
 ### USER-SPECIFIED FILES
-
+Media/
 
 
 ### DOWNLOADED DEPENDENCIES
@@ -23,9 +23,6 @@
 # Log files
 *.log
 /log
-
-# Java classes
-*.class
 
 # Python bytecode
 __pycache__/

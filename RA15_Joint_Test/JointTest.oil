@@ -1,0 +1,70 @@
+#include "implementation.oil"
+
+CPU ATMEL_AT91SAM7S256
+{
+  OS LEJOS_OSEK
+  {
+    STATUS = EXTENDED;
+    STARTUPHOOK = FALSE;
+    ERRORHOOK = FALSE;
+    SHUTDOWNHOOK = FALSE;
+    PRETASKHOOK = FALSE;
+    POSTTASKHOOK = FALSE;
+    USEGETSERVICEID = FALSE;
+    USEPARAMETERACCESS = FALSE;
+    USERESSCHEDULER = FALSE;
+  };
+
+  APPMODE appmode1{}; 
+
+  /* Definition of OSEK Alarm Counter */
+  COUNTER SysTimerCnt
+  {
+    MINCYCLE = 1;
+    MAXALLOWEDVALUE = 100000;
+    TICKSPERBASE = 1;
+  };
+  
+  /* Definition of MotorDriver_Task and alarm*/
+  #include "./src/MotorRegulator.oil"			//PRIORITY 10, 50MS SCHEDULER
+  
+
+  /* Definition of LCD task and alarm*/
+  TASK LCDTask
+  {
+    AUTOSTART = FALSE;
+    PRIORITY = 2; 					/* Smaller value means lower priority */ 
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    STACKSIZE = 512; 				/* Stack size */ 
+  };
+
+
+  ALARM LCDAlarm
+  {
+    COUNTER = SysTimerCnt;
+    ACTION = ACTIVATETASK
+    {
+        TASK = LCDTask;
+    };
+    AUTOSTART = TRUE
+    {
+        ALARMTIME = 1;
+        CYCLETIME = 100; 			/* Task is executed every 100msec */
+        APPMODE = appmode1;
+    };
+  };
+  
+  /* Definition of MainTask */
+  TASK MainTask
+  {
+   	AUTOSTART = TRUE 
+	{
+   		APPMODE = appmode1;
+   	};
+    PRIORITY = 1;
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    STACKSIZE = 512; /* Stack size */ 
+  };
+};
